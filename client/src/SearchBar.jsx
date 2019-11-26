@@ -9,14 +9,12 @@ function SearchBar() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // console.log(event.target.searchField.value);
     axios.get('http://localhost:3000/api/search/', {
       params: {
         q: event.target.searchField.value,
       },
     })
       .then(({ data }) => {
-        // console.log('DATA', data);
         setSearch(data);
       });
   };
