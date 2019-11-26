@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SearchBar from './SearchBar';
 
-const AppContext = React.createContext(null);
+export const AppContext = React.createContext(null);
 
 function App() {
+  const [searchState, setSearch] = useState(null);
+
+  const appContextValue = {
+    searchState, setSearch,
+  };
+
   return (
-    <AppContext.Provider>
-      <div>HELLO WORLD</div>
+    <AppContext.Provider value={appContextValue}>
+      <h1>The Engineer&apos;s Guide to the Garden</h1>
+      <SearchBar />
     </AppContext.Provider>
   );
 }
