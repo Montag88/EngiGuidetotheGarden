@@ -8,7 +8,6 @@ function SearchResults() {
 
   const renderPlantListings = () => {
     return searchState.map((plant) => {
-      console.log(plant)
       return <PlantListing plant={plant} key={plant.plantId} />;
     });
   };

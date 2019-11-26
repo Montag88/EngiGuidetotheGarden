@@ -5,7 +5,7 @@ import { AppContext } from './App';
 
 function SearchBar() {
   const context = useContext(AppContext);
-  const { setSearch } = context;
+  const { setSearch, setSearchData } = context;
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -16,7 +16,7 @@ function SearchBar() {
     })
       .then(({ data }) => {
         setSearch(data.plantResults);
-        // data.searchData
+        setSearchData(data.searchData);
       });
   };
 
