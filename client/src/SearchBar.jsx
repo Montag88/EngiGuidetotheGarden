@@ -15,7 +15,8 @@ function SearchBar() {
       },
     })
       .then(({ data }) => {
-        setSearch(data);
+        setSearch(data.plantResults);
+        // data.searchData
       });
   };
 

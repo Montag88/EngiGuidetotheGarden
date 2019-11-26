@@ -25,13 +25,15 @@ module.exports = {
   assemblePlantResults(plantRecords) {
     const plantResults = [];
     plantRecords.forEach(({ data }) => {
+      // limit to 4 images returned from search
+      // if (data.images)
       const plant = {
-        native_status: data.native_status,
+        nativeStatus: data.native_status,
         images: data.images,
-        plant_id: data.id,
-        genus_id: data.genus.id,
-        common_name: data.common_name,
-        scientific_name: data.scientific_name,
+        plantId: data.id,
+        genusId: data.genus.id,
+        commonName: data.common_name,
+        scientificName: data.scientific_name,
       };
       plantResults.push(plant);
     });
