@@ -24,13 +24,11 @@ module.exports = {
 
   assemblePlantResults(plantRecords) {
     const plantResults = [];
+    // CAPITALIZE FIRST LETTER OF EACH WORD IN COMMON NAME
     plantRecords.forEach(({ data }) => {
-      // limit to 4 images returned from search
-      // if data images length is 4 or greater
       while (data.images.length < 4) {
         data.images.push(null);
       }
-
       const plant = {
         nativeStatus: data.native_status,
         images: data.images,

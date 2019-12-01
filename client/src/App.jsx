@@ -6,12 +6,15 @@ import SearchResults from './SearchResults';
 export const AppContext = React.createContext(null);
 
 function App() {
+  // COULD SEPARATE CONTEXT INTO SEPARATE FILE
   const [searchState, setSearch] = useState([]);
-  const [searchDataState, setSearchData] = useState([]);
+  const [searchDataState, setSearchData] = useState({});
 
   const appContextValue = {
-    searchState, setSearch,
-    searchDataState, setSearchData,
+    searchState,
+    setSearch,
+    searchDataState,
+    setSearchData,
   };
 
   return (

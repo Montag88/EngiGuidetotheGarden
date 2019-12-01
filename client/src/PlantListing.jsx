@@ -1,31 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// ADD PROPS VALIDATION
+import PropTypes from 'prop-types';
 
 function PlantListing({ plant }) {
   const { scientificName, commonName, images } = plant;
+  // CAPITALIZE FIRST LETTER OF EACH WORD IN COMMON NAME
   const renderImages = () => {
     return images.map((p, i) => {
       while (i < 4) {
         if (p === null) {
-          return <div>BLANK</div>;
+          return <BlankImage />;
         }
-        return <img src={p.url} alt={commonName} />;
+        return <Image src={p.url} alt={commonName} />;
       }
     });
   };
 
-  // ADD STYLED COMPONENTS
+  const Images = styled.span`
+    display: inline-block;
+  `;
+  const Image = styled.img`
+    height: 200px;
+    width: 200px;
+  `;
+  const BlankImage = styled(Image)`
+    background-color: lightgrey;
+  `;
+  const Description = styled.div`
+
+  `;
+  const ListingContainer = styled.article`
+    width: fit-content;
+  `;
 
   return (
-    <article>
-      <span>
+    <ListingContainer>
+      <Images>
         {renderImages()}
-      </span>
-      <div>{`${scientificName}, ${commonName}`}</div>
-    </article>
+      </Images>
+      <Description>
+        <div>
+          Scientific Name:&nbsp;
+          <em>{scientificName}</em>
+        </div>
+        <div>
+          {`Common Name: ${commonName}`}
+        </div>
+      </Description>
+    </ListingContainer>
   );
 }
+
+PlantListing.propTypes = {
+  plant: PropTypes.shape({
+    scientificName: PropTypes.string,
+    commonName: PropTypes.string,
+    images: PropTypes.array,
+  }).isRequired,
+};
 
 export default PlantListing;
