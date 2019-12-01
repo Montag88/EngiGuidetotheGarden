@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function PlantListing({ plant }) {
+export default function PlantListing({ plant }) {
   const { scientificName, commonName, images } = plant;
   // CAPITALIZE FIRST LETTER OF EACH WORD IN COMMON NAME
   const renderImages = () => {
@@ -58,5 +58,3 @@ PlantListing.propTypes = {
     images: PropTypes.array,
   }).isRequired,
 };
-
-export default PlantListing;

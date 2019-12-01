@@ -11,4 +11,6 @@ app.use(express.static(path.resolve(__dirname, '../client/public')));
 app.use('/api/search', search);
 app.use('/api/user', user);
 
-app.listen(port, () => console.log(`Guide to Garden on port ${port}!`));
+app.listen(port, () => {
+  console.log(`Guide to Garden on port ${port}!`);
+});

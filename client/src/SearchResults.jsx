@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from './App';
 import PlantListing from './PlantListing';
 
-function SearchResults() {
+export default function SearchResults() {
   const context = useContext(AppContext);
   const { searchState } = context;
 
@@ -18,5 +18,3 @@ function SearchResults() {
     </>
   );
 }
-
-export default SearchResults;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
 import { AppContext } from './App';
 
-function SearchNav() {
+export default function SearchNav() {
   const context = useContext(AppContext);
   const { searchDataState } = context;
 
@@ -59,5 +59,3 @@ function SearchNav() {
     </Pagination>
   );
 }
-
-export default SearchNav;

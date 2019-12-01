@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { AppContext } from './App';
 
-function SearchBar() {
+export default function SearchBar() {
   const context = useContext(AppContext);
   const { setSearch, setSearchData } = context;
 
@@ -26,5 +26,3 @@ function SearchBar() {
     </form>
   );
 }
-
-export default SearchBar;
