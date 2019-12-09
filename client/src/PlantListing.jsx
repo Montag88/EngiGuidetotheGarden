@@ -9,9 +9,9 @@ export default function PlantListing({ plant }) {
     return images.map((p, i) => {
       while (i < 4) {
         if (p === null) {
-          return <BlankImage />;
+          return <BlankImage key={i + commonName} />;
         }
-        return <Image src={p.url} alt={commonName} />;
+        return <Image src={p.url} alt={commonName} key={i + commonName} />;
       }
     });
   };

@@ -2,11 +2,12 @@ const axios = require('axios');
 const auth = require('../config.js');
 
 module.exports = {
-  searchPlants(query) {
+  searchPlants({ query }) {
     return axios.get('https://trefle.io/api/plants', {
       params: {
         token: auth.TREFLE_TOKEN,
         page_size: 10,
+        page: query.pageNumber,
         q: query.q,
       },
     });

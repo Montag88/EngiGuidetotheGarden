@@ -12,6 +12,7 @@ export default function SearchBar() {
     axios.get('http://localhost:3000/api/search/', {
       params: {
         q: event.target.searchField.value,
+        pageNumber: 1,
       },
     })
       .then(({ data }) => {

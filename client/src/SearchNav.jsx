@@ -1,11 +1,25 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
+import Axios from 'axios';
 import { AppContext } from './App';
 
 export default function SearchNav() {
   const context = useContext(AppContext);
-  const { searchDataState } = context;
+  const { searchDataState, setSearch, setSearchData } = context;
+
+  const handlePageChange = (event) => {
+    Axios.get('http://localhost:3000/api/search/', {
+      params: {
+        q: searchDataState.q,
+        pageNumber: event.selected + 1,
+      },
+    })
+      .then(({ data }) => {
+        setSearch(data.plantResults);
+        setSearchData(data.searchData);
+      });
+  };
 
   const renderSearchNav = () => {
     // conditionally render based on searchDataState
@@ -15,10 +29,11 @@ export default function SearchNav() {
           pageCount={Number(searchDataState.totalPages)}
           pageRangeDisplayed={2}
           marginPagesDisplayed={2}
-          previousLabel="<"
+          initialPage={Number(searchDataState.currentPage) - 1}
+          previousLabel="previous"
           // previousClassName="navPage"
           // previousLinkClassName={}
-          nextLabel=">"
+          nextLabel="next"
           // nextClassName="navPage"
           // nextLinkClassName={}
           breakLabel="..."
@@ -29,8 +44,8 @@ export default function SearchNav() {
           activeClassName="currentPage"
           // activeLinkClassName={}
           // disabledClassName={}
-          // onPageChange={}
-          // disableInitialCallback={true}
+          onPageChange={handlePageChange}
+          disableInitialCallback
           // hrefBuilder={}
         />
       );

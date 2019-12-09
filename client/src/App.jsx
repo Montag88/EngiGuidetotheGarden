@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
-import SearchNav from './SearchNav';
-// DEPENDENCY CYCLE, CAN REMOVE BY MOVING CONTEXT INTO SEPARATE FILE
 import SearchResults from './SearchResults';
 import NavBar from './NavBar';
 
@@ -29,11 +27,9 @@ export default function App() {
       <Router>
         <h1>The Engineer&apos;s Guide to the Garden</h1>
         <NavBar />
+        <SearchBar />
         <Switch>
           <Route path="/search">
-            {/* BETTER DESIGN HERE IS USING A SINGLE MAIN COMPONENT */}
-            <SearchBar />
-            <SearchNav />
             <SearchResults />
           </Route>
         </Switch>

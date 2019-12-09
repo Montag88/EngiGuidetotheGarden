@@ -5,11 +5,12 @@ const router = express.Router();
 
 router.get('/', ({ query }, res) => {
   const searchData = {};
-  trefle.searchPlants(query)
+  trefle.searchPlants({ query })
     .then(({ data, headers }) => {
       searchData.totalResults = headers.total;
       searchData.totalPages = headers['total-pages'];
       searchData.currentPage = headers['page-number'];
+      searchData.q = query.q;
       return trefle.searchPlantDetails(data);
     })
     .then((plantRecords) => {
