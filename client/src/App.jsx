@@ -22,6 +22,9 @@ export default function App() {
     setSearchData,
   };
 
+  // when search state changes, route path to /search
+
+
   return (
     <AppContext.Provider value={appContextValue}>
       <Router>
@@ -29,9 +32,7 @@ export default function App() {
         <NavBar />
         <SearchBar />
         <Switch>
-          <Route path="/search">
-            <SearchResults />
-          </Route>
+          <Route exact path="/search" render={() => <SearchResults />} />
         </Switch>
       </Router>
     </AppContext.Provider>

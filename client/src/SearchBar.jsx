@@ -1,24 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { AppContext } from './App';
+// import axios from 'axios';
+import queryString from 'query-string';
+import { useHistory } from 'react-router-dom';
 
 export default function SearchBar() {
-  const context = useContext(AppContext);
-  const { setSearch, setSearchData } = context;
+  const history = useHistory();
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    axios.get('http://localhost:3000/api/search/', {
-      params: {
-        q: event.target.searchField.value,
-        pageNumber: 1,
-      },
-    })
-      .then(({ data }) => {
-        setSearch(data.plantResults);
-        setSearchData(data.searchData);
-      });
+    const query = {
+      q: event.target.searchField.value,
+      page: 1,
+    };
+    history.push(`/search?${queryString.stringify(query)}`);
   };
 
   return (

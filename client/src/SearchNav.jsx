@@ -1,24 +1,21 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
-import Axios from 'axios';
+import { useLocation, useHistory } from 'react-router-dom';
+import queryString from 'query-string';
 import { AppContext } from './App';
 
 export default function SearchNav() {
   const context = useContext(AppContext);
-  const { searchDataState, setSearch, setSearchData } = context;
+  const { searchDataState } = context;
+
+  const location = useLocation();
+  const history = useHistory();
 
   const handlePageChange = (event) => {
-    Axios.get('http://localhost:3000/api/search/', {
-      params: {
-        q: searchDataState.q,
-        pageNumber: event.selected + 1,
-      },
-    })
-      .then(({ data }) => {
-        setSearch(data.plantResults);
-        setSearchData(data.searchData);
-      });
+    const query = queryString.parse(location.search);
+    query.page = event.selected + 1;
+    history.push(`/search?${queryString.stringify(query)}`);
   };
 
   const renderSearchNav = () => {

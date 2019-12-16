@@ -6,7 +6,7 @@ const user = require('./userRouter');
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.resolve(__dirname, '../client/public')));
+app.use('/', express.static(path.resolve(__dirname, '../client/public')));
 
 app.use('/api/search', search);
 app.use('/api/user', user);
